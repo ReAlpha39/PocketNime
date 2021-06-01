@@ -13,7 +13,7 @@ class SeasonAnime {
     this.requestCacheExpiry,
     this.seasonName,
     this.seasonYear,
-    this.anime,
+    this.animeList,
   });
 
   String? requestHash;
@@ -21,7 +21,7 @@ class SeasonAnime {
   int? requestCacheExpiry;
   String? seasonName;
   int? seasonYear;
-  List<AnimeMinInfo>? anime;
+  List<AnimeMinInfo>? animeList;
 
   factory SeasonAnime.fromJson(String str) =>
       SeasonAnime.fromMap(json.decode(str));
@@ -34,7 +34,7 @@ class SeasonAnime {
         requestCacheExpiry: json["request_cache_expiry"],
         seasonName: json["season_name"],
         seasonYear: json["season_year"],
-        anime: List<AnimeMinInfo>.from(
+        animeList: List<AnimeMinInfo>.from(
             json["anime"].map((x) => AnimeMinInfo.fromMap(x))),
       );
 
@@ -44,6 +44,6 @@ class SeasonAnime {
         "request_cache_expiry": requestCacheExpiry,
         "season_name": seasonName,
         "season_year": seasonYear,
-        "anime": List<AnimeMinInfo>.from(anime!.map((x) => x.toMap())),
+        "anime": List<AnimeMinInfo>.from(animeList!.map((x) => x.toMap())),
       };
 }
