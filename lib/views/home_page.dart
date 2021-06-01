@@ -1,31 +1,24 @@
-import 'package:anipocket/models/constant.dart';
-import 'package:anipocket/models/tops.dart';
+import 'package:anipocket/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:anipocket/repositories/jikan_api.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  final JikanApi jikanApi = JikanApi();
+  final HomeController _homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Anipocket"),
       ),
-      body: Container(
-        child: FutureBuilder(
-          future: jikanApi.getTop(TopType.ANIME),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text("error");
-            }
-            if (snapshot.hasData) {
-              var data = snapshot.data as Tops;
-              return Center(
-                child: Text(data.top!.length.toString()),
-              );
-            }
-            return CircularProgressIndicator();
-          },
+      body: Center(
+        child: Obx(
+          () => _homeController.tops.value.top == null
+              ? CircularProgressIndicator()
+              : Container(
+                  child: Text(
+                    _homeController.tops.value.top!.length.toString(),
+                  ),
+                ),
         ),
       ),
     );
