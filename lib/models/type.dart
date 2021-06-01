@@ -1,21 +1,4 @@
-enum ScreenType { TV, OVA, MOVIE }
-enum TopType { ANIME, MANGA, PEOPLE, CHARACTERS }
-enum TopSubType {
-  AIRING,
-  UPCOMING,
-  TV,
-  MOVIE,
-  OVA,
-  SPECIAL,
-  MANGA,
-  NOVELS,
-  ONESHOTS,
-  DOUJIN,
-  MANHWA,
-  MANHUA,
-  BYPOPULARITY,
-  FAVORITE
-}
+import 'package:anipocket/models/constant.dart';
 
 final typeValues = EnumValues({
   'Movie': ScreenType.MOVIE,

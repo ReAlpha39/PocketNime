@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:anipocket/models/constant.dart';
 import 'package:anipocket/models/type.dart';
 
 class Top {
