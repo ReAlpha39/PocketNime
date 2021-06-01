@@ -8,6 +8,8 @@ enum TopType { ANIME, MANGA, PEOPLE, CHARACTERS }
 
 enum Type { ANIME, MANGA }
 
+enum SeasonType { WINTER, SPRING, SUMMER, FALL }
+
 enum Source {
   MANGA,
   LIGHT_NOVEL,
