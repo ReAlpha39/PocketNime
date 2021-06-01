@@ -23,7 +23,7 @@ class Top {
   String? title;
   String? url;
   String? imageUrl;
-  ScreenType? type;
+  AnimeType? type;
   int? episodes;
   String? startDate;
   String? endDate;
@@ -40,7 +40,7 @@ class Top {
         title: json["title"],
         url: json["url"],
         imageUrl: json["image_url"],
-        type: typeValues.map![json["type"]] as ScreenType,
+        type: typeValues.map![json["type"]] as AnimeType,
         episodes: json["episodes"],
         startDate: json["start_date"],
         endDate: json["end_date"] == null ? null : json["end_date"],
