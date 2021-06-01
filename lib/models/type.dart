@@ -1,19 +1,36 @@
 import 'package:anipocket/models/constant.dart';
 
-final typeValues = EnumValues({
+final animeTypeValues = EnumValues({
+  "anime": AnimeType.ANIME,
+  "manga": AnimeType.MANGA,
   "Movie": AnimeType.MOVIE,
+  "Special": AnimeType.SPECIAL,
   "ONA": AnimeType.ONA,
   "OVA": AnimeType.OVA,
-  "Special": AnimeType.SPECIAL,
   "TV": AnimeType.TV,
+  "Manhua": AnimeType.MANHUA,
+  "Manhwa": AnimeType.MANHWA,
+  "Novel": AnimeType.NOVEL,
+  "Music": AnimeType.MUSIC,
+  "Oneshot": AnimeType.ONESHOT,
+  "Doujin": AnimeType.DOUJIN
+});
+
+final topTypeValues = EnumValues({
   'anime': TopType.ANIME,
   'manga': TopType.MANGA,
   'people': TopType.PEOPLE,
   'characters': TopType.CHARACTERS,
+});
+
+final seasonTypeValues = EnumValues({
   "Fall": SeasonType.FALL,
   "Spring": SeasonType.SPRING,
   "Summer": SeasonType.SUMMER,
   "Winter": SeasonType.WINTER,
+});
+
+final sourceTypeValues = EnumValues({
   "Book": Source.BOOK,
   "Card game": Source.CARD_GAME,
   "-": Source.EMPTY,

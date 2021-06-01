@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:anipocket/models/constant.dart';
 import 'package:anipocket/models/type.dart';
 
 class Genre {
@@ -11,7 +12,7 @@ class Genre {
   });
 
   int? malId;
-  Type? type;
+  AnimeType? type;
   String? name;
   String? url;
 
@@ -21,14 +22,14 @@ class Genre {
 
   factory Genre.fromMap(Map<String, dynamic> json) => Genre(
         malId: json["mal_id"],
-        type: typeValues.map![json["type"]] as Type,
+        type: animeTypeValues.map![json["type"]] as AnimeType,
         name: json["name"],
         url: json["url"],
       );
 
   Map<String, dynamic> toMap() => {
         "mal_id": malId,
-        "type": typeValues.reverse[type],
+        "type": animeTypeValues.reverse[type],
         "name": name,
         "url": url,
       };

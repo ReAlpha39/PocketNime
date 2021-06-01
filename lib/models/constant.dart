@@ -2,11 +2,23 @@ const String baseUrl = 'api.jikan.moe';
 
 const String version = 'v3';
 
-enum AnimeType { TV, ONA, OVA, MOVIE, SPECIAL }
+enum AnimeType {
+  ANIME,
+  MANGA,
+  TV,
+  MOVIE,
+  SPECIAL,
+  ONA,
+  OVA,
+  MUSIC,
+  DOUJIN,
+  MANHWA,
+  NOVEL,
+  MANHUA,
+  ONESHOT
+}
 
 enum TopType { ANIME, MANGA, PEOPLE, CHARACTERS }
-
-enum Type { ANIME, MANGA }
 
 enum SeasonType { WINTER, SPRING, SUMMER, FALL }
 
