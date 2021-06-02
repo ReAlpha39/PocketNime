@@ -19,7 +19,7 @@ class AnimeCard extends StatelessWidget {
       child: InkWell(
         onTap: () => Get.toNamed(
           routeName.reverse[RouteName.ANIMEDETAIL]!,
-          arguments: index,
+          arguments: _homeController.seasonAnime.value.animeList![index!].malId,
         ),
         child: Container(
           constraints: BoxConstraints(maxWidth: 450),
