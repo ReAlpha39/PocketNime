@@ -1,5 +1,6 @@
 import 'package:anipocket/controllers/home_controller.dart';
 import 'package:anipocket/models/type.dart';
+import 'package:anipocket/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,10 @@ class AnimeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(
-        onTap: () => print(index),
+        onTap: () => Get.toNamed(
+          routeName.reverse[RouteName.ANIMEDETAIL]!,
+          arguments: index,
+        ),
         child: Container(
           constraints: BoxConstraints(maxWidth: 450),
           decoration: BoxDecoration(
