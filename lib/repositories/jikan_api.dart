@@ -1,3 +1,4 @@
+import 'package:anipocket/models/anime/anime_description.dart';
 import 'package:anipocket/models/constant.dart';
 import 'package:anipocket/models/season/season_anime.dart';
 import 'package:anipocket/models/tops.dart';
@@ -46,6 +47,23 @@ class JikanApi {
       }
     } catch (e) {
       print(e);
+    }
+    return output;
+  }
+
+  // Fetch detail anime
+  Future<AnimeDescription> getAnimeDescription(String id) async {
+    String path = version + '/anime/' + id;
+    AnimeDescription output = AnimeDescription();
+    try {
+      var response = await http.get(Uri.https(baseUrl, path));
+      if (response.statusCode == 200) {
+        output = AnimeDescription.fromJson(response.body);
+      } else {
+        print("Http status code: " + response.statusCode.toString());
+      }
+    } catch (e) {
+      print("Cannot fetch anime description, error: " + e.toString());
     }
     return output;
   }
