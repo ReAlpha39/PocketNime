@@ -21,7 +21,7 @@ class Aired {
 
   factory Aired.fromMap(Map<String, dynamic> json) => Aired(
         from: json["from"] == null ? null : DateTime.parse(json["from"]),
-        to: json["to"],
+        to: json["to"] == null ? null : DateTime.parse(json["to"]),
         prop: json["prop"] == null ? null : Airing.fromMap(json["prop"]),
         string: json["string"] == null ? null : json["string"],
       );
