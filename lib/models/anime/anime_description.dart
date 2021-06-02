@@ -135,7 +135,7 @@ class AnimeDescription {
             : List<Genre>.from(json["producers"].map((x) => Genre.fromMap(x))),
         licensors: json["licensors"] == null
             ? null
-            : List<Genre>.from(json["licensors"].map((x) => x)),
+            : List<Genre>.from(json["licensors"].map((x) => Genre.fromMap(x))),
         studios: json["studios"] == null
             ? null
             : List<Genre>.from(json["studios"].map((x) => Genre.fromMap(x))),
