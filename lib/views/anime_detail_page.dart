@@ -9,6 +9,7 @@ class AnimeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Obx(
           () => _controller.anime.value.title == null
               ? Text("Loading...")

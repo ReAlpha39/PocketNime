@@ -1,4 +1,5 @@
 import 'package:anipocket/controllers/home_controller.dart';
+import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -9,9 +10,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Anipocket"),
+        elevation: 0,
+        title: Center(
+          child: Text("Anipocket"),
+        ),
       ),
       body: Container(
+        color: customMaterialColor(primaryColor).shade50,
         width: context.width,
         height: context.height,
         child: Obx(

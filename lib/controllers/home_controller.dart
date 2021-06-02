@@ -1,6 +1,7 @@
 import 'package:anipocket/models/anime/genre.dart';
 import 'package:anipocket/models/season/season_anime.dart';
 import 'package:anipocket/repositories/jikan_api.dart';
+import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:anipocket/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -69,7 +70,7 @@ class HomeController extends GetxController {
       middleText: middleText,
       textConfirm: 'OK',
       radius: 17,
-      buttonColor: Colors.yellow.shade600,
+      buttonColor: primaryColor,
       confirmTextColor: Colors.black87,
       onConfirm: () {
         Navigator.of(Get.overlayContext!).pop();

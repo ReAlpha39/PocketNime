@@ -1,5 +1,6 @@
 import 'package:anipocket/routes/home_binding.dart';
 import 'package:anipocket/routes/routes.dart';
+import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: routeName.reverse[RouteName.HOMEPAGE],
       initialBinding: HomeBinding(),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: customMaterialColor(Color(0xff006064)),
       ),
     );
   }

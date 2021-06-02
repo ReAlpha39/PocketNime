@@ -1,6 +1,7 @@
 import 'package:anipocket/controllers/home_controller.dart';
 import 'package:anipocket/models/type.dart';
 import 'package:anipocket/routes/routes.dart';
+import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,8 @@ class AnimeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 3,
+      shadowColor: customMaterialColor(primaryColor).shade50,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -46,7 +48,8 @@ class AnimeCard extends StatelessWidget {
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(8),
                               ),
-                              color: Colors.black12,
+                              color: customMaterialColor(Color(0xffcfd8dc))
+                                  .shade200,
                             ),
                             width: double.infinity,
                             child: Padding(
@@ -65,7 +68,8 @@ class AnimeCard extends StatelessWidget {
                               bottom: 6,
                             ),
                             width: double.infinity,
-                            color: Colors.grey[100],
+                            color:
+                                customMaterialColor(Color(0xffcfd8dc)).shade50,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[
@@ -104,17 +108,21 @@ class AnimeCard extends StatelessWidget {
                       Expanded(
                         child: SizedBox(
                           width: double.infinity,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 4,
-                              vertical: 8,
-                            ),
-                            child: SingleChildScrollView(
-                              physics: BouncingScrollPhysics(),
-                              child: Text(
-                                _homeController.seasonAnime.value
-                                    .animeList![index!].synopsis!,
-                                style: TextStyle(fontSize: 12),
+                          child: Container(
+                            color:
+                                customMaterialColor(Color(0xffeceff1)).shade50,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 4,
+                                vertical: 8,
+                              ),
+                              child: SingleChildScrollView(
+                                physics: BouncingScrollPhysics(),
+                                child: Text(
+                                  _homeController.seasonAnime.value
+                                      .animeList![index!].synopsis!,
+                                  style: TextStyle(fontSize: 12),
+                                ),
                               ),
                             ),
                           ),
@@ -124,7 +132,7 @@ class AnimeCard extends StatelessWidget {
                         width: double.infinity,
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.grey[100],
+                          color: customMaterialColor(Color(0xffcfd8dc)).shade50,
                           borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(8),
                           ),

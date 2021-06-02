@@ -1,5 +1,6 @@
 import 'package:anipocket/models/anime/anime_description.dart';
 import 'package:anipocket/repositories/jikan_api.dart';
+import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +47,7 @@ class AnimeDetailController extends GetxController {
       middleText: middleText,
       textConfirm: 'OK',
       radius: 17,
-      buttonColor: Colors.yellow.shade600,
+      buttonColor: primaryColor,
       confirmTextColor: Colors.black87,
       onConfirm: () {
         Navigator.of(Get.overlayContext!).pop();
