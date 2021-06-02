@@ -20,16 +20,16 @@ class Aired {
   String toJson() => json.encode(toMap());
 
   factory Aired.fromMap(Map<String, dynamic> json) => Aired(
-        from: DateTime.parse(json["from"]),
-        to: DateTime.parse(json["to"]),
-        prop: Airing.fromMap(json["prop"]),
-        string: json["string"],
+        from: json["from"] == null ? null : DateTime.parse(json["from"]),
+        to: json["to"],
+        prop: json["prop"] == null ? null : Airing.fromMap(json["prop"]),
+        string: json["string"] == null ? null : json["string"],
       );
 
   Map<String, dynamic> toMap() => {
-        "from": from!.toIso8601String(),
-        "to": to!.toIso8601String(),
-        "prop": prop!.toMap(),
-        "string": string,
+        "from": from == null ? null : from!.toIso8601String(),
+        "to": to,
+        "prop": prop == null ? null : prop!.toMap(),
+        "string": string == null ? null : string,
       };
 }

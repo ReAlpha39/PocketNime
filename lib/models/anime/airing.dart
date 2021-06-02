@@ -16,12 +16,12 @@ class Airing {
   String toJson() => json.encode(toMap());
 
   factory Airing.fromMap(Map<String, dynamic> json) => Airing(
-        from: Date.fromMap(json["from"]),
-        to: Date.fromMap(json["to"]),
+        from: json["from"] == null ? null : Date.fromMap(json["from"]),
+        to: json["to"] == null ? null : Date.fromMap(json["to"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "from": from!.toMap(),
-        "to": to!.toMap(),
+        "from": from == null ? null : from!.toMap(),
+        "to": to == null ? null : to!.toMap(),
       };
 }

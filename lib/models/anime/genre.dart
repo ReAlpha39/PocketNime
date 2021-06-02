@@ -21,16 +21,16 @@ class Genre {
   String toJson() => json.encode(toMap());
 
   factory Genre.fromMap(Map<String, dynamic> json) => Genre(
-        malId: json["mal_id"],
-        type: animeTypeValues.map![json["type"]] as AnimeType,
-        name: json["name"],
-        url: json["url"],
+        malId: json["mal_id"] == null ? null : json["mal_id"],
+        type: json["type"] == null ? null : animeTypeValues.map![json["type"]],
+        name: json["name"] == null ? null : json["name"],
+        url: json["url"] == null ? null : json["url"],
       );
 
   Map<String, dynamic> toMap() => {
-        "mal_id": malId,
-        "type": animeTypeValues.reverse[type],
-        "name": name,
-        "url": url,
+        "mal_id": malId == null ? null : malId,
+        "type": type == null ? null : animeTypeValues.reverse[type],
+        "name": name == null ? null : name,
+        "url": url == null ? null : url,
       };
 }
