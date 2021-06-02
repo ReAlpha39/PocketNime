@@ -10,13 +10,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Anipocket"),
       ),
-      body: Center(
+      body: Container(
+        width: context.width,
+        height: context.height,
         child: Obx(
-          () => _homeController.tops.value.top == null
-              ? CircularProgressIndicator()
-              : Container(
-                  child: Text(
-                    _homeController.tops.value.top!.length.toString(),
+          () => _homeController.seasonAnime.value.animeList == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Scrollbar(
+                  child: ListView.builder(
+                    itemCount:
+                        _homeController.seasonAnime.value.animeList!.length,
+                    itemBuilder: (context, index) =>
+                        _homeController.loadSeasonAnimeWidget(index),
                   ),
                 ),
         ),

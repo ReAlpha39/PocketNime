@@ -39,7 +39,7 @@ class JikanApi {
         output = SeasonAnime.fromJson(response.body);
       }
     } catch (e) {
-      throw "Cannot fetch season anime";
+      print(e);
     }
     return output;
   }

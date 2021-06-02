@@ -1,12 +1,13 @@
-import 'package:anipocket/models/constant.dart';
-import 'package:anipocket/models/tops.dart';
+import 'package:anipocket/models/anime/genre.dart';
+import 'package:anipocket/models/season/season_anime.dart';
 import 'package:anipocket/repositories/jikan_api.dart';
+import 'package:anipocket/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   JikanApi _jikanApi = JikanApi();
-  Rx<Tops> tops = Tops().obs;
+  Rx<SeasonAnime> seasonAnime = SeasonAnime().obs;
 
   @override
   void onInit() {
@@ -16,11 +17,40 @@ class HomeController extends GetxController {
 
   void _loadTopsData() async {
     try {
-      tops.value = await _jikanApi.getTop(TopType.ANIME);
-      tops.refresh();
+      seasonAnime.value = await _jikanApi.getSeasonAnime();
+      seasonAnime.refresh();
     } catch (e) {
       _showDialog(title: "Error", middleText: "Cannot load data");
     }
+  }
+
+  Widget loadSeasonAnimeWidget(int index) {
+    if (seasonAnime.value.animeList![index].r18 == false) {
+      return Padding(
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 16,
+          right: 16,
+        ),
+        child: AnimeCard(
+          index: index,
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  String cardGenre(List<Genre> listGenre) {
+    String genre = '';
+    for (int i = 0; i <= listGenre.length - 1; i++) {
+      if (listGenre.length - 1 == i) {
+        genre += listGenre[i].name!;
+      } else {
+        genre += listGenre[i].name! + ' • ';
+      }
+    }
+    return genre;
   }
 
   void _closeCurrentDialog() {
