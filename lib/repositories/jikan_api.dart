@@ -34,7 +34,13 @@ class JikanApi {
     }
     SeasonAnime output = SeasonAnime();
     try {
-      var response = await http.get(Uri.http(baseUrl, path));
+      var response = await http.get(
+        Uri.https(baseUrl, path),
+        headers: {
+          "Accept": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        },
+      );
       if (response.statusCode == 200) {
         output = SeasonAnime.fromJson(response.body);
       }
