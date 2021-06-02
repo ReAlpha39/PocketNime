@@ -9,7 +9,14 @@ class AnimeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(argument.toString()),
+        title: Obx(
+          () => _controller.anime.value.title == null
+              ? Text("Loading...")
+              : Text(
+                  _controller.anime.value.title!,
+                  overflow: TextOverflow.ellipsis,
+                ),
+        ),
       ),
       body: Container(),
     );
