@@ -3,8 +3,20 @@ import 'package:anipocket/widgets/anime_detail/anime_overview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AnimeOverview extends StatelessWidget {
+class AnimeOverview extends StatefulWidget {
+  @override
+  _AnimeOverviewState createState() => _AnimeOverviewState();
+}
+
+class _AnimeOverviewState extends State<AnimeOverview> {
   final AnimeDetailController _controller = Get.find();
+  ScrollController? _scrollController;
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,9 +26,11 @@ class AnimeOverview extends StatelessWidget {
         vertical: 8,
       ),
       child: Scrollbar(
+        controller: _scrollController,
         isAlwaysShown:
             GetPlatform.isWeb || GetPlatform.isDesktop ? true : false,
         child: SingleChildScrollView(
+          controller: _scrollController,
           scrollDirection: Axis.horizontal,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 12),

@@ -25,6 +25,8 @@ class HomePage extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 )
               : Scrollbar(
+                isAlwaysShown:
+            GetPlatform.isWeb || GetPlatform.isDesktop ? true : false,
                   child: LayoutBuilder(
                     builder: (context, constraint) {
                       if (constraint.maxWidth <= 600) {
