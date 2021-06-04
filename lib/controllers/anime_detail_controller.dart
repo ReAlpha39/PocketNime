@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 class AnimeDetailController extends GetxController {
   JikanApi _jikanApi = JikanApi();
   final dateFormat = DateFormat('MMM dd, yyyy');
+  final numberFormat = NumberFormat('###,###');
   Rx<AnimeDescription> anime = AnimeDescription().obs;
 
   @override

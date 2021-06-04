@@ -33,6 +33,7 @@ class AnimeRating extends StatelessWidget {
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
                         maxWidth: 400,
+                        maxHeight: 140,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -76,7 +77,6 @@ class AnimeRating extends StatelessWidget {
                                       horizontal: 16,
                                       vertical: 4,
                                     ),
-                                    height: 100,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -107,6 +107,12 @@ class AnimeRating extends StatelessWidget {
                                             fontSize: 14,
                                           ),
                                         ),
+                                        Text(
+                                          "Members",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -114,7 +120,6 @@ class AnimeRating extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 4,
                                     ),
-                                    height: 100,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -122,8 +127,10 @@ class AnimeRating extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          _controller.anime.value.scoredBy
-                                                  .toString() +
+                                          _controller.numberFormat.format(
+                                                _controller
+                                                    .anime.value.scoredBy,
+                                              ) +
                                               " users",
                                           style: TextStyle(
                                             fontSize: 14,
@@ -151,6 +158,14 @@ class AnimeRating extends StatelessWidget {
                                         Text(
                                           _controller.anime.value.favorites
                                               .toString(),
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          _controller.numberFormat.format(
+                                              _controller.anime.value.members),
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
