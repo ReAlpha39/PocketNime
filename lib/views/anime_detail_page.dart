@@ -2,6 +2,7 @@ import 'package:anipocket/controllers/anime_detail_controller.dart';
 import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:anipocket/widgets/anime_detail/anime_main_card.dart';
 import 'package:anipocket/widgets/anime_detail/anime_overview.dart';
+import 'package:anipocket/widgets/anime_detail/anime_rating.dart';
 import 'package:anipocket/widgets/anime_detail/anime_synopsis.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,6 +44,7 @@ class AnimeDetailPage extends StatelessWidget {
                           child: AnimeMainCard(),
                         ),
                 ),
+                AnimeRating(),
                 AnimeOverview(),
                 AnimeSynopsis(),
               ]),
