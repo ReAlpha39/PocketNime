@@ -39,7 +39,6 @@ class JikanApi {
         Uri.https(baseUrl, path),
         headers: {
           "Accept": "application/json",
-          "Access-Control-Allow-Origin": "*"
         },
       );
       if (response.statusCode == 200) {
