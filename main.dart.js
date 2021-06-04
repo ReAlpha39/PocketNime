@@ -36420,7 +36420,7 @@ h=new G.mH(null,null,null,null,null,null)
 p=4
 k=t.N
 s=7
-return P.ae(G.alZ(P.akC("https","api.jikan.moe",i,null),P.ax(["Accept","application/json","Access-Control-Allow-Origin","*"],k,k)),$async$pu)
+return P.ae(G.alZ(P.akC("https","api.jikan.moe",i,null),P.ax(["Accept","application/json"],k,k)),$async$pu)
 case 7:m=b
 if(m.b===200){k=m
 h=G.auf(C.a0.cG(0,B.alT(J.bg(U.akY(k.e).c.a,"charset")).cG(0,k.x)))}p=2
