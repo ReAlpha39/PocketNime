@@ -42,6 +42,7 @@ class AnimeRating extends StatelessWidget {
                             Expanded(
                               flex: 1,
                               child: Container(
+                                padding: const EdgeInsets.only(right: 8.0),
                                 height: 100,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
