@@ -42,6 +42,17 @@ class AnimeDetailPage extends StatelessWidget {
                           child: AnimeMainCard(),
                         ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12, top: 24),
+                  child: Text(
+                    "Information",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
                 AnimeOverview(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),

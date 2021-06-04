@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class AnimeOverviewCard extends StatefulWidget {
   final String? titleCard;
   final String? value;
+  final String nullMessage;
   const AnimeOverviewCard({
     Key? key,
     this.titleCard,
     this.value,
+    this.nullMessage = "none",
   }) : super(key: key);
 
   @override
@@ -55,7 +57,9 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
                   ),
                 ),
                 child: Center(
-                  child: Text(widget.value!),
+                  child: Text(widget.value == null
+                      ? widget.nullMessage
+                      : widget.value!),
                 ),
               ),
             ),

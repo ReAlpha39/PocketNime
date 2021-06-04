@@ -14,6 +14,8 @@ class AnimeOverview extends StatelessWidget {
         vertical: 8,
       ),
       child: Scrollbar(
+        isAlwaysShown:
+            GetPlatform.isWeb || GetPlatform.isDesktop ? true : false,
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
@@ -35,12 +37,22 @@ class AnimeOverview extends StatelessWidget {
                               : _controller.anime.value.episodes.toString(),
                         ),
                         AnimeOverviewCard(
+                          titleCard: "Duration",
+                          value: _controller.anime.value.duration,
+                        ),
+                        AnimeOverviewCard(
                           titleCard: "Status",
                           value: _controller.anime.value.status,
                         ),
                         AnimeOverviewCard(
                           titleCard: "Aired",
-                          value: _controller.anime.value.aired!.from.toString(),
+                          value: _controller.dateFormat.format(
+                                  _controller.anime.value.aired!.from!) +
+                              " ~ " +
+                              (_controller.anime.value.aired!.to == null
+                                  ? "?"
+                                  : _controller.dateFormat.format(
+                                      _controller.anime.value.aired!.to!)),
                         ),
                         AnimeOverviewCard(
                           titleCard: "Premiered",
@@ -49,6 +61,29 @@ class AnimeOverview extends StatelessWidget {
                         AnimeOverviewCard(
                           titleCard: "Broadcast",
                           value: _controller.anime.value.broadcast,
+                        ),
+                        AnimeOverviewCard(
+                          titleCard: "Producers",
+                          value: _controller
+                              .listGenre(_controller.anime.value.producers),
+                        ),
+                        AnimeOverviewCard(
+                          titleCard: "Licensors",
+                          value: _controller
+                              .listGenre(_controller.anime.value.licensors),
+                        ),
+                        AnimeOverviewCard(
+                          titleCard: "Studio",
+                          value: _controller
+                              .listGenre(_controller.anime.value.studios),
+                        ),
+                        AnimeOverviewCard(
+                          titleCard: "Studio",
+                          value: _controller.anime.value.source,
+                        ),
+                        AnimeOverviewCard(
+                          titleCard: "Rating",
+                          value: _controller.anime.value.rating,
                         ),
                       ],
                     ),
