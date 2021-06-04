@@ -2,6 +2,7 @@ import 'package:anipocket/controllers/anime_detail_controller.dart';
 import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:anipocket/widgets/anime_detail/anime_main_card.dart';
 import 'package:anipocket/widgets/anime_detail/anime_overview.dart';
+import 'package:anipocket/widgets/anime_detail/anime_synopsis.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,22 +44,7 @@ class AnimeDetailPage extends StatelessWidget {
                         ),
                 ),
                 AnimeOverview(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Obx(
-                    () => _controller.anime.value.synopsis == null
-                        ? Container()
-                        : Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(_controller.anime.value.synopsis!),
-                            ),
-                          ),
-                  ),
-                ),
+                AnimeSynopsis(),
               ]),
             ),
           ],
