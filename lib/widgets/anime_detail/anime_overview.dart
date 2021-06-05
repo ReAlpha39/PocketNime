@@ -116,7 +116,7 @@ class _AnimeOverviewState extends State<AnimeOverview> {
                                           _controller.anime.value.studios),
                                     ),
                                     AnimeOverviewCard(
-                                      titleCard: "Studio",
+                                      titleCard: "Source",
                                       value: _controller.anime.value.source,
                                     ),
                                     AnimeOverviewCard(
