@@ -8,12 +8,12 @@ class AnimeRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Obx(
-        () => _controller.anime.value.synopsis == null
-            ? Container()
-            : Column(
+    return Obx(
+      () => _controller.anime.value.title == null
+          ? Container()
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -53,12 +53,18 @@ class AnimeRating extends StatelessWidget {
                                         fontSize: 16,
                                       ),
                                     ),
-                                    Text(
-                                      _controller.anime.value.score.toString(),
-                                      style: TextStyle(
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    Obx(
+                                      () =>
+                                          _controller.anime.value.score == null
+                                              ? _noData(fontSize: 26)
+                                              : Text(
+                                                  _controller.anime.value.score
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 26,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                     ),
                                   ],
                                 ),
@@ -127,50 +133,84 @@ class AnimeRating extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          _controller.numberFormat.format(
-                                                _controller
-                                                    .anime.value.scoredBy,
-                                              ) +
-                                              " users",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Obx(
+                                          () => _controller
+                                                      .anime.value.scoredBy ==
+                                                  null
+                                              ? _noData()
+                                              : Text(
+                                                  _controller.numberFormat
+                                                          .format(
+                                                        _controller.anime.value
+                                                            .scoredBy,
+                                                      ) +
+                                                      " users",
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                         ),
-                                        Text(
-                                          "#" +
-                                              _controller.anime.value.rank
-                                                  .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Obx(
+                                          () => _controller.anime.value.rank ==
+                                                  null
+                                              ? _noData()
+                                              : Text(
+                                                  "#" +
+                                                      _controller
+                                                          .anime.value.rank!
+                                                          .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                         ),
-                                        Text(
-                                          "#" +
-                                              _controller.anime.value.popularity
-                                                  .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Obx(
+                                          () => _controller
+                                                      .anime.value.popularity ==
+                                                  null
+                                              ? _noData()
+                                              : Text(
+                                                  "#" +
+                                                      _controller.anime.value
+                                                          .popularity!
+                                                          .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                         ),
-                                        Text(
-                                          _controller.anime.value.favorites
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Obx(
+                                          () => _controller
+                                                      .anime.value.favorites ==
+                                                  null
+                                              ? _noData()
+                                              : Text(
+                                                  _controller
+                                                      .anime.value.favorites!
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                         ),
-                                        Text(
-                                          _controller.numberFormat.format(
-                                              _controller.anime.value.members),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Obx(
+                                          () => _controller
+                                                      .anime.value.members ==
+                                                  null
+                                              ? _noData()
+                                              : Text(
+                                                  _controller.numberFormat
+                                                      .format(_controller.anime
+                                                          .value.members!),
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -185,6 +225,16 @@ class AnimeRating extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+    );
+  }
+
+  Widget _noData({double fontSize = 14}) {
+    return Text(
+      "?",
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
