@@ -34,7 +34,10 @@ class AnimeSynopsis extends StatelessWidget {
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
                         _controller.anime.value.synopsis!,
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(
+                          height: 1.5,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ),
