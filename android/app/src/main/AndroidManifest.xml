@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.realpha.anipocket">
+   <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="anipocket"
         android:icon="@mipmap/ic_launcher">
