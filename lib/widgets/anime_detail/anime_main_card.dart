@@ -11,9 +11,14 @@ class AnimeMainCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: 220),
+        constraints: BoxConstraints(
+          minWidth: 300,
+          maxHeight: 220,
+          maxWidth: 500,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Obx(
               () => ConstrainedBox(
@@ -46,7 +51,6 @@ class AnimeMainCard extends StatelessWidget {
                       ? Container()
                       : Container(
                           padding: const EdgeInsets.all(8.0),
-                          width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -73,7 +77,6 @@ class AnimeMainCard extends StatelessWidget {
                       ? Container()
                       : Container(
                           padding: const EdgeInsets.all(8.0),
-                          width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

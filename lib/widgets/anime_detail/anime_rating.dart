@@ -21,6 +21,7 @@ class AnimeRating extends StatelessWidget {
                     child: Text(
                       "Rating",
                       style: TextStyle(
+                        color: Colors.black54,
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
@@ -32,7 +33,8 @@ class AnimeRating extends StatelessWidget {
                     ),
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
-                        maxWidth: 400,
+                        minWidth: 300,
+                        maxWidth: 500,
                         maxHeight: 140,
                       ),
                       child: Padding(
@@ -40,7 +42,7 @@ class AnimeRating extends StatelessWidget {
                         child: Row(
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 2,
                               child: Container(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 height: 100,
@@ -61,7 +63,7 @@ class AnimeRating extends StatelessWidget {
                                                   _controller.anime.value.score
                                                       .toString(),
                                                   style: TextStyle(
-                                                    fontSize: 26,
+                                                    fontSize: 30,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -76,12 +78,12 @@ class AnimeRating extends StatelessWidget {
                               width: 1,
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 3,
                               child: Row(
                                 children: [
                                   Container(
                                     padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
+                                      horizontal: 20,
                                       vertical: 4,
                                     ),
                                     child: Column(

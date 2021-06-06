@@ -41,12 +41,24 @@ class AnimeDetailPage extends StatelessWidget {
                       ? Container()
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: AnimeMainCard(),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: AnimeMainCard(),
+                          ),
                         ),
                 ),
-                AnimeRating(),
-                AnimeOverview(),
-                AnimeSynopsis(),
+                Align(
+                  alignment: Alignment.center,
+                  child: AnimeRating(),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: AnimeOverview(),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: AnimeSynopsis(),
+                ),
               ]),
             ),
           ],

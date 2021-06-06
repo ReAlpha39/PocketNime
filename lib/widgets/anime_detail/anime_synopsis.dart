@@ -9,7 +9,7 @@ class AnimeSynopsis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Obx(
         () => _controller.anime.value.synopsis == null
             ? Container()
@@ -17,10 +17,11 @@ class AnimeSynopsis extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 12),
+                    padding: const EdgeInsets.only(left: 16),
                     child: Text(
                       "Synopsis",
                       style: TextStyle(
+                        color: Colors.black54,
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
@@ -32,11 +33,17 @@ class AnimeSynopsis extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        _controller.anime.value.synopsis!,
-                        style: TextStyle(
-                          height: 1.5,
-                          fontSize: 14,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minWidth: 300,
+                          maxWidth: 500,
+                        ),
+                        child: Text(
+                          _controller.anime.value.synopsis!,
+                          style: TextStyle(
+                            height: 1.5,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ),

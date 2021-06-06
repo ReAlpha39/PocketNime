@@ -34,10 +34,11 @@ class _AnimeOverviewState extends State<AnimeOverview> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 12),
+                    padding: const EdgeInsets.only(left: 28),
                     child: Text(
                       "Information",
                       style: TextStyle(
+                        color: Colors.black54,
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
