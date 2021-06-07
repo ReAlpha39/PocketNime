@@ -1,4 +1,5 @@
 import 'package:anipocket/models/anime/anime_description.dart';
+import 'package:anipocket/models/character_staff/character_staff.dart';
 import 'package:anipocket/models/constant.dart';
 import 'package:anipocket/models/season/season_anime.dart';
 import 'package:anipocket/models/tops.dart';
@@ -65,5 +66,21 @@ class JikanApi {
       print("Cannot fetch anime description, error: " + e.toString());
     }
     return output;
+  }
+
+  Future<CharacterStaff> getAnimeCharacterStaff(String id) async {
+    String path = version + '/anime/' + id + "/characters_staff";
+    CharacterStaff data = CharacterStaff();
+    try {
+      var response = await http.get(Uri.https(baseUrl, path));
+      if (response.statusCode == 200) {
+        data = CharacterStaff.fromJson(response.body);
+      } else {
+        print("Http status code: " + response.statusCode.toString());
+      }
+    } catch (e) {
+      print("Cannot fetch anime character staff, error: " + e.toString());
+    }
+    return data;
   }
 }
