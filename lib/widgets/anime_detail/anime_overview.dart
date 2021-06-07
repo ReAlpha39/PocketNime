@@ -56,10 +56,6 @@ class _AnimeOverviewState extends State<AnimeOverview> {
                           },
                           child: Scrollbar(
                             controller: _scrollController,
-                            isAlwaysShown:
-                                GetPlatform.isWeb || GetPlatform.isDesktop
-                                    ? true
-                                    : false,
                             child: SingleChildScrollView(
                               controller: _scrollController,
                               scrollDirection: Axis.horizontal,
