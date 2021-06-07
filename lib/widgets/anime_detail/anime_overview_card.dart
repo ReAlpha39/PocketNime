@@ -53,8 +53,9 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
+                  vertical: 4,
                 ),
-                height: 40,
+                height: 50,
                 width: Get.width <= 900
                     ? null
                     : Get.width <= 1100
@@ -70,6 +71,8 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
                   child: Text(
                     widget.value == null ? widget.nullMessage : widget.value!,
                     textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.clip,
                   ),
                 ),
               ),

@@ -57,17 +57,22 @@ class AnimeRating extends StatelessWidget {
                                       ),
                                     ),
                                     Obx(
-                                      () =>
-                                          _controller.anime.value.score == null
-                                              ? _noData(fontSize: 26)
-                                              : Text(
-                                                  _controller.anime.value.score
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 30,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                      () => _controller.anime.value.score ==
+                                              null
+                                          ? _noData(fontSize: 26)
+                                          : Flexible(
+                                              child: Text(
+                                                _controller.anime.value.score
+                                                    .toString(),
+                                                overflow: TextOverflow.clip,
+                                                style: TextStyle(
+                                                  fontSize: Get.width <= 350
+                                                      ? 20
+                                                      : 30,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
+                                              ),
+                                            ),
                                     ),
                                   ],
                                 ),
@@ -126,96 +131,116 @@ class AnimeRating extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 4,
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Obx(
-                                          () => _controller
-                                                      .anime.value.scoredBy ==
-                                                  null
-                                              ? _noData()
-                                              : Text(
-                                                  _controller.numberFormat
-                                                          .format(
+                                  Flexible(
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 4,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Obx(
+                                            () => _controller
+                                                        .anime.value.scoredBy ==
+                                                    null
+                                                ? _noData()
+                                                : Text(
+                                                    _controller.numberFormat
+                                                            .format(
+                                                          _controller.anime
+                                                              .value.scoredBy,
+                                                        ) +
+                                                        " users",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                          ),
+                                          Obx(
+                                            () => _controller
+                                                        .anime.value.rank ==
+                                                    null
+                                                ? _noData()
+                                                : Text(
+                                                    "#" +
+                                                        _controller
+                                                            .anime.value.rank!
+                                                            .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                          ),
+                                          Obx(
+                                            () => _controller.anime.value
+                                                        .popularity ==
+                                                    null
+                                                ? _noData()
+                                                : Text(
+                                                    "#" +
                                                         _controller.anime.value
-                                                            .scoredBy,
-                                                      ) +
-                                                      " users",
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
+                                                            .popularity!
+                                                            .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
-                                                ),
-                                        ),
-                                        Obx(
-                                          () => _controller.anime.value.rank ==
-                                                  null
-                                              ? _noData()
-                                              : Text(
-                                                  "#" +
-                                                      _controller
-                                                          .anime.value.rank!
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
+                                          ),
+                                          Obx(
+                                            () => _controller.anime.value
+                                                        .favorites ==
+                                                    null
+                                                ? _noData()
+                                                : Text(
+                                                    _controller
+                                                        .anime.value.favorites!
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
-                                                ),
-                                        ),
-                                        Obx(
-                                          () => _controller
-                                                      .anime.value.popularity ==
-                                                  null
-                                              ? _noData()
-                                              : Text(
-                                                  "#" +
-                                                      _controller.anime.value
-                                                          .popularity!
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
+                                          ),
+                                          Obx(
+                                            () => _controller
+                                                        .anime.value.members ==
+                                                    null
+                                                ? _noData()
+                                                : Text(
+                                                    _controller.numberFormat
+                                                        .format(_controller
+                                                            .anime
+                                                            .value
+                                                            .members!),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
-                                                ),
-                                        ),
-                                        Obx(
-                                          () => _controller
-                                                      .anime.value.favorites ==
-                                                  null
-                                              ? _noData()
-                                              : Text(
-                                                  _controller
-                                                      .anime.value.favorites!
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                        ),
-                                        Obx(
-                                          () => _controller
-                                                      .anime.value.members ==
-                                                  null
-                                              ? _noData()
-                                              : Text(
-                                                  _controller.numberFormat
-                                                      .format(_controller.anime
-                                                          .value.members!),
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ],
