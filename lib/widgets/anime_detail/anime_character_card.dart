@@ -47,9 +47,9 @@ class AnimeCharacterCard extends StatelessWidget {
                 Container(
                   width: Get.width < 450
                       ? 100
-                      : Get.width >= 900
-                          ? 100
-                          : null,
+                      : Get.width <= 1100
+                          ? 120
+                          : 150,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     charName!,
@@ -64,9 +64,9 @@ class AnimeCharacterCard extends StatelessWidget {
                 Container(
                   width: Get.width < 450
                       ? 100
-                      : Get.width >= 900
-                          ? 100
-                          : null,
+                      : Get.width <= 1100
+                          ? 120
+                          : 150,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     seiyuuName!,
