@@ -1,5 +1,6 @@
 import 'package:anipocket/utils/widget_size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AnimeOverviewCard extends StatefulWidget {
   final String? titleCard;
@@ -48,8 +49,11 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
                 });
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
                 height: 40,
+                width: Get.width <= 1000 ? null : 225,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(8),

@@ -21,49 +21,94 @@ class AnimeDetailPage extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: customMaterialColor(primaryColor).shade50,
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              floating: true,
-              title: Obx(
-                () => Text(
-                  _controller.anime.value.title == null
-                      ? 'Loading...'
-                      : _controller.anime.value.title!,
-                  style: TextStyle(color: Colors.black),
+        body: LayoutBuilder(
+          builder: (context, constraint) => CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                floating: true,
+                title: Obx(
+                  () => Text(
+                    _controller.anime.value.title == null
+                        ? 'Loading...'
+                        : _controller.anime.value.title! +
+                            " " +
+                            constraint.maxWidth.toString(),
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
               ),
+              constraint.maxWidth <= 1070 ? _listCard() : _gridCard(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _gridCard() {
+    return SliverList(
+      delegate: SliverChildListDelegate([
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Obx(
+              () => _controller.anime.value.title == null
+                  ? Container()
+                  : Padding(
+                      padding: const EdgeInsets.only(
+                        top: 28,
+                      ),
+                      child: Column(
+                        children: [
+                          AnimeMainCard(),
+                          AnimeOverview(),
+                        ],
+                      ),
+                    ),
             ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Obx(
-                  () => _controller.anime.value.title == null
-                      ? Container()
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: AnimeMainCard(),
-                          ),
-                        ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: AnimeRating(),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: AnimeOverview(),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: AnimeSynopsis(),
-                ),
-              ]),
+            Column(
+              children: [
+                AnimeRating(),
+                AnimeSynopsis(),
+              ],
             ),
           ],
         ),
-      ),
+      ]),
+    );
+  }
+
+  Widget _listCard() {
+    return SliverList(
+      delegate: SliverChildListDelegate([
+        Obx(
+          () => _controller.anime.value.title == null
+              ? Container()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: AnimeMainCard(),
+                  ),
+                ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: AnimeRating(),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: AnimeOverview(),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: AnimeSynopsis(),
+        ),
+      ]),
     );
   }
 }

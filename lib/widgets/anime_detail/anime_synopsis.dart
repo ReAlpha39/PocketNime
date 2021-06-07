@@ -9,7 +9,7 @@ class AnimeSynopsis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Obx(
         () => _controller.anime.value.synopsis == null
             ? Container()
@@ -36,7 +36,7 @@ class AnimeSynopsis extends StatelessWidget {
                       child: ConstrainedBox(
                         constraints: BoxConstraints(
                           minWidth: 300,
-                          maxWidth: 500,
+                          maxWidth: 480,
                         ),
                         child: Text(
                           _controller.anime.value.synopsis!,
