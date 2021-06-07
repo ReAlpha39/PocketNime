@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: customMaterialColor(primaryColor).shade50,
       appBar: AppBar(
         elevation: 0,
         title: Center(
@@ -16,8 +17,6 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: customMaterialColor(primaryColor).shade50,
-        width: context.width,
         height: context.height,
         child: Obx(
           () => _homeController.seasonAnime.value.animeList == null
@@ -33,16 +32,21 @@ class HomePage extends StatelessWidget {
                     isAlwaysShown: GetPlatform.isWeb || GetPlatform.isDesktop
                         ? true
                         : false,
-                    child: LayoutBuilder(
-                      builder: (context, constraint) {
-                        if (constraint.maxWidth <= 600) {
-                          return _cardGridView(1);
-                        } else if (constraint.maxWidth <= 1200) {
-                          return _cardGridView(2);
-                        } else {
-                          return _cardGridView(3);
-                        }
-                      },
+                    child: Center(
+                      child: Container(
+                        width: 1600,
+                        child: LayoutBuilder(
+                          builder: (context, constraint) {
+                            if (constraint.maxWidth <= 600) {
+                              return _cardGridView(1);
+                            } else if (constraint.maxWidth <= 1200) {
+                              return _cardGridView(2);
+                            } else {
+                              return _cardGridView(3);
+                            }
+                          },
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -52,14 +56,22 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _cardGridView(int crossAxisCount) {
-    return StaggeredGridView.countBuilder(
-      itemCount: _homeController.seasonAnime.value.animeList!.length,
-      itemBuilder: (context, index) =>
-          _homeController.loadSeasonAnimeWidget(index),
-      crossAxisCount: crossAxisCount,
-      staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
+    return Theme(
+      data: Theme.of(Get.context!).copyWith(
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: MaterialStateProperty.all(Colors.transparent),
+        ),
+      ),
+      child: StaggeredGridView.countBuilder(
+        addAutomaticKeepAlives: false,
+        itemCount: _homeController.seasonAnime.value.animeList!.length,
+        itemBuilder: (context, index) =>
+            _homeController.loadSeasonAnimeWidget(index),
+        crossAxisCount: crossAxisCount,
+        staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+      ),
     );
   }
 }
