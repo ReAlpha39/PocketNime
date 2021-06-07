@@ -131,11 +131,9 @@ class BoxImage extends StatelessWidget {
           bottomRight: imageOnLeft ? Radius.zero : Radius.circular(8),
         ),
         child: pathPicture != "" && pathPicture != null
-            ? Image.network(
-                pathPicture!,
-                loadingBuilder: (context, child, progress) {
-                  return progress == null ? child : LinearProgressIndicator();
-                },
+            ? FadeInImage.assetNetwork(
+                placeholder: 'assets/circular_progress.gif',
+                image: pathPicture!,
                 fit: BoxFit.cover,
               )
             : Container(),

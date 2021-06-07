@@ -182,11 +182,9 @@ class PartCardImage extends StatelessWidget {
           topLeft: Radius.circular(8),
           bottomLeft: Radius.circular(8),
         ),
-        child: Image.network(
-          imageUrl!,
-          loadingBuilder: (context, child, progress) {
-            return progress == null ? child : LinearProgressIndicator();
-          },
+        child: FadeInImage.assetNetwork(
+          placeholder: 'assets/circular_progress.gif',
+          image: imageUrl!,
           fit: BoxFit.cover,
         ),
       ),
