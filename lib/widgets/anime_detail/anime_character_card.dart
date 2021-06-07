@@ -31,7 +31,11 @@ class AnimeCharacterCard extends StatelessWidget {
             : Get.width < 450
                 ? 80
                 : 100,
-        width: 500,
+        width: Get.width <= 900
+            ? 500
+            : Get.width <= 1100
+                ? 420
+                : 500,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -41,7 +45,11 @@ class AnimeCharacterCard extends StatelessWidget {
                   pathPicture: imageUrlChar,
                 ),
                 Container(
-                  width: Get.width < 450 ? 100 : null,
+                  width: Get.width < 450
+                      ? 100
+                      : Get.width >= 900
+                          ? 100
+                          : null,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     charName!,
@@ -54,7 +62,11 @@ class AnimeCharacterCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: Get.width < 450 ? 100 : null,
+                  width: Get.width < 450
+                      ? 100
+                      : Get.width >= 900
+                          ? 100
+                          : null,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     seiyuuName!,

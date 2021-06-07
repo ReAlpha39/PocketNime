@@ -56,7 +56,7 @@ class AnimeDetailPage extends StatelessWidget {
                             )
                           ]),
                         )
-                      : constraint.maxWidth <= 1070
+                      : constraint.maxWidth <= 900
                           ? _listCard()
                           : _gridCard(),
                 ),

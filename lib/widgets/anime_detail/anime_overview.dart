@@ -1,7 +1,7 @@
 import 'package:anipocket/controllers/anime_detail_controller.dart';
+import 'package:anipocket/utils/widget_size.dart';
 import 'package:anipocket/widgets/anime_detail/anime_overview_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
 class AnimeOverview extends StatefulWidget {
@@ -45,270 +45,179 @@ class _AnimeOverviewState extends State<AnimeOverview> {
                       ),
                     ),
                   ),
-                  Get.width <= 1070
-                      ? Scrollbar(
-                          controller: _scrollController,
-                          isAlwaysShown:
-                              GetPlatform.isWeb || GetPlatform.isDesktop
-                                  ? true
-                                  : false,
-                          child: SingleChildScrollView(
+                  Get.width <= 900
+                      ? WidgetSize(
+                          onChange: (Size size) {
+                            setState(() {
+                              if (size.width > 900)
+                                _scrollController!
+                                    .detach(_scrollController!.position);
+                            });
+                          },
+                          child: Scrollbar(
                             controller: _scrollController,
-                            scrollDirection: Axis.horizontal,
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 12),
-                              child: Obx(
-                                () => _controller.anime.value.title == null
-                                    ? Container()
-                                    : Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          AnimeOverviewCard(
-                                            titleCard: "Type",
-                                            value: _controller.anime.value.type,
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Episodes",
-                                            value: _controller
-                                                        .anime.value.episodes ==
-                                                    null
-                                                ? '0'
-                                                : _controller
-                                                    .anime.value.episodes
-                                                    .toString(),
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Duration",
-                                            value: _controller
-                                                .anime.value.duration,
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Status",
-                                            value:
-                                                _controller.anime.value.status,
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Aired",
-                                            value: _controller.dateFormat
-                                                    .format(_controller.anime
-                                                        .value.aired!.from!) +
-                                                " ~ " +
-                                                (_controller.anime.value.aired!
-                                                            .to ==
-                                                        null
-                                                    ? "?"
-                                                    : _controller.dateFormat
-                                                        .format(_controller
-                                                            .anime
-                                                            .value
-                                                            .aired!
-                                                            .to!)),
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Premiered",
-                                            value: _controller
-                                                .anime.value.premiered,
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Broadcast",
-                                            value: _controller
-                                                .anime.value.broadcast,
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Producers",
-                                            value: _controller.listGenre(
-                                                _controller
-                                                    .anime.value.producers),
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Licensors",
-                                            value: _controller.listGenre(
-                                                _controller
-                                                    .anime.value.licensors),
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Studio",
-                                            value: _controller.listGenre(
-                                                _controller
-                                                    .anime.value.studios),
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Source",
-                                            value:
-                                                _controller.anime.value.source,
-                                          ),
-                                          AnimeOverviewCard(
-                                            titleCard: "Rating",
-                                            value:
-                                                _controller.anime.value.rating,
-                                          ),
-                                        ],
-                                      ),
+                            isAlwaysShown:
+                                GetPlatform.isWeb || GetPlatform.isDesktop
+                                    ? true
+                                    : false,
+                            child: SingleChildScrollView(
+                              controller: _scrollController,
+                              scrollDirection: Axis.horizontal,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    AnimeOverviewCard(
+                                      titleCard: "Type",
+                                      value: _controller.anime.value.type,
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Episodes",
+                                      value: _controller.anime.value.episodes ==
+                                              null
+                                          ? '0'
+                                          : _controller.anime.value.episodes
+                                              .toString(),
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Duration",
+                                      value: _controller.anime.value.duration,
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Status",
+                                      value: _controller.anime.value.status,
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Aired",
+                                      value: _controller.dateFormat.format(
+                                              _controller
+                                                  .anime.value.aired!.from!) +
+                                          " ~ " +
+                                          (_controller.anime.value.aired!.to ==
+                                                  null
+                                              ? "?"
+                                              : _controller.dateFormat.format(
+                                                  _controller
+                                                      .anime.value.aired!.to!)),
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Premiered",
+                                      value: _controller.anime.value.premiered,
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Broadcast",
+                                      value: _controller.anime.value.broadcast,
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Producers",
+                                      value: _controller.listGenre(
+                                          _controller.anime.value.producers),
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Licensors",
+                                      value: _controller.listGenre(
+                                          _controller.anime.value.licensors),
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Studio",
+                                      value: _controller.listGenre(
+                                          _controller.anime.value.studios),
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Source",
+                                      value: _controller.anime.value.source,
+                                    ),
+                                    AnimeOverviewCard(
+                                      titleCard: "Rating",
+                                      value: _controller.anime.value.rating,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         )
-                      : Obx(
-                          () => _controller.anime.value.title == null
-                              ? Container()
-                              : Row(
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        AnimeOverviewCard(
-                                          titleCard: "Type",
-                                          value: _controller.anime.value.type,
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Episodes",
-                                          value: _controller
-                                                      .anime.value.episodes ==
-                                                  null
-                                              ? '0'
-                                              : _controller.anime.value.episodes
-                                                  .toString(),
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Duration",
-                                          value:
-                                              _controller.anime.value.duration,
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Status",
-                                          value: _controller.anime.value.status,
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Aired",
-                                          value: _controller.dateFormat.format(
-                                                  _controller.anime.value.aired!
-                                                      .from!) +
-                                              " ~ " +
-                                              (_controller.anime.value.aired!
-                                                          .to ==
-                                                      null
-                                                  ? "?"
-                                                  : _controller.dateFormat
-                                                      .format(_controller.anime
-                                                          .value.aired!.to!)),
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Premiered",
-                                          value:
-                                              _controller.anime.value.premiered,
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        AnimeOverviewCard(
-                                          titleCard: "Broadcast",
-                                          value:
-                                              _controller.anime.value.broadcast,
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Producers",
-                                          value: _controller.listGenre(
-                                              _controller
-                                                  .anime.value.producers),
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Licensors",
-                                          value: _controller.listGenre(
-                                              _controller
-                                                  .anime.value.licensors),
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Studio",
-                                          value: _controller.listGenre(
-                                              _controller.anime.value.studios),
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Source",
-                                          value: _controller.anime.value.source,
-                                        ),
-                                        AnimeOverviewCard(
-                                          titleCard: "Rating",
-                                          value: _controller.anime.value.rating,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                      : Row(
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                AnimeOverviewCard(
+                                  titleCard: "Type",
+                                  value: _controller.anime.value.type,
                                 ),
-                        )
+                                AnimeOverviewCard(
+                                  titleCard: "Episodes",
+                                  value:
+                                      _controller.anime.value.episodes == null
+                                          ? '0'
+                                          : _controller.anime.value.episodes
+                                              .toString(),
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Duration",
+                                  value: _controller.anime.value.duration,
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Status",
+                                  value: _controller.anime.value.status,
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Aired",
+                                  value: _controller.dateFormat.format(
+                                          _controller
+                                              .anime.value.aired!.from!) +
+                                      " ~ " +
+                                      (_controller.anime.value.aired!.to == null
+                                          ? "?"
+                                          : _controller.dateFormat.format(
+                                              _controller
+                                                  .anime.value.aired!.to!)),
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Premiered",
+                                  value: _controller.anime.value.premiered,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                AnimeOverviewCard(
+                                  titleCard: "Broadcast",
+                                  value: _controller.anime.value.broadcast,
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Producers",
+                                  value: _controller.listGenre(
+                                      _controller.anime.value.producers),
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Licensors",
+                                  value: _controller.listGenre(
+                                      _controller.anime.value.licensors),
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Studio",
+                                  value: _controller.listGenre(
+                                      _controller.anime.value.studios),
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Source",
+                                  value: _controller.anime.value.source,
+                                ),
+                                AnimeOverviewCard(
+                                  titleCard: "Rating",
+                                  value: _controller.anime.value.rating,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                 ],
               ),
       ),
-    );
-  }
-
-  Widget _gridCard() {
-    return StaggeredGridView.count(
-      crossAxisCount: 5,
-      staggeredTiles: [
-        StaggeredTile.fit(1),
-      ],
-      mainAxisSpacing: 4,
-      crossAxisSpacing: 4,
-      children: [
-        AnimeOverviewCard(
-          titleCard: "Type",
-          value: _controller.anime.value.type,
-        ),
-        AnimeOverviewCard(
-          titleCard: "Episodes",
-          value: _controller.anime.value.episodes == null
-              ? '0'
-              : _controller.anime.value.episodes.toString(),
-        ),
-        AnimeOverviewCard(
-          titleCard: "Duration",
-          value: _controller.anime.value.duration,
-        ),
-        AnimeOverviewCard(
-          titleCard: "Status",
-          value: _controller.anime.value.status,
-        ),
-        AnimeOverviewCard(
-          titleCard: "Aired",
-          value: _controller.dateFormat
-                  .format(_controller.anime.value.aired!.from!) +
-              " ~ " +
-              (_controller.anime.value.aired!.to == null
-                  ? "?"
-                  : _controller.dateFormat
-                      .format(_controller.anime.value.aired!.to!)),
-        ),
-        AnimeOverviewCard(
-          titleCard: "Premiered",
-          value: _controller.anime.value.premiered,
-        ),
-        AnimeOverviewCard(
-          titleCard: "Broadcast",
-          value: _controller.anime.value.broadcast,
-        ),
-        AnimeOverviewCard(
-          titleCard: "Producers",
-          value: _controller.listGenre(_controller.anime.value.producers),
-        ),
-        AnimeOverviewCard(
-          titleCard: "Licensors",
-          value: _controller.listGenre(_controller.anime.value.licensors),
-        ),
-        AnimeOverviewCard(
-          titleCard: "Studio",
-          value: _controller.listGenre(_controller.anime.value.studios),
-        ),
-        AnimeOverviewCard(
-          titleCard: "Source",
-          value: _controller.anime.value.source,
-        ),
-        AnimeOverviewCard(
-          titleCard: "Rating",
-          value: _controller.anime.value.rating,
-        ),
-      ],
     );
   }
 }

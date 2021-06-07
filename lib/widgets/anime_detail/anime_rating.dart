@@ -31,12 +31,13 @@ class AnimeRating extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: 300,
-                        maxWidth: 500,
-                        maxHeight: 140,
-                      ),
+                    child: Container(
+                      height: 140,
+                      width: Get.width <= 900
+                          ? 500
+                          : Get.width <= 1100
+                              ? 400
+                              : 500,
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Row(

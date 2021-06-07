@@ -12,7 +12,11 @@ class AnimeMainCard extends StatelessWidget {
       ),
       child: Container(
         height: Get.width < 400 ? 200 : 220,
-        width: 500,
+        width: Get.width <= 900
+            ? 500
+            : Get.width <= 1100
+                ? 400
+                : 500,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

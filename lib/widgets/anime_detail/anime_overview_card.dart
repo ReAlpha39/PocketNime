@@ -55,7 +55,11 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
                   horizontal: 24,
                 ),
                 height: 40,
-                width: Get.width <= 1000 ? null : 225,
+                width: Get.width <= 900
+                    ? null
+                    : Get.width <= 1100
+                        ? 180
+                        : 225,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(8),

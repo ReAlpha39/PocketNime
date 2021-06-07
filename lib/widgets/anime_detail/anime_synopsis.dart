@@ -33,11 +33,12 @@ class AnimeSynopsis extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minWidth: 300,
-                          maxWidth: 480,
-                        ),
+                      child: Container(
+                        width: Get.width <= 900
+                            ? 480
+                            : Get.width <= 1100
+                                ? 400
+                                : 480,
                         child: Text(
                           _controller.anime.value.synopsis!,
                           style: TextStyle(
