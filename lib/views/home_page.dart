@@ -24,19 +24,26 @@ class HomePage extends StatelessWidget {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : Scrollbar(
-                isAlwaysShown:
-            GetPlatform.isWeb || GetPlatform.isDesktop ? true : false,
-                  child: LayoutBuilder(
-                    builder: (context, constraint) {
-                      if (constraint.maxWidth <= 600) {
-                        return _cardGridView(1);
-                      } else if (constraint.maxWidth <= 1200) {
-                        return _cardGridView(2);
-                      } else {
-                        return _cardGridView(3);
-                      }
-                    },
+              : NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (OverscrollIndicatorNotification overscroll) {
+                    overscroll.disallowGlow();
+                    return true;
+                  },
+                  child: Scrollbar(
+                    isAlwaysShown: GetPlatform.isWeb || GetPlatform.isDesktop
+                        ? true
+                        : false,
+                    child: LayoutBuilder(
+                      builder: (context, constraint) {
+                        if (constraint.maxWidth <= 600) {
+                          return _cardGridView(1);
+                        } else if (constraint.maxWidth <= 1200) {
+                          return _cardGridView(2);
+                        } else {
+                          return _cardGridView(3);
+                        }
+                      },
+                    ),
                   ),
                 ),
         ),

@@ -23,39 +23,45 @@ class AnimeDetailPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: customMaterialColor(Color(0xffe0f7fa)).shade50,
         body: LayoutBuilder(
-          builder: (context, constraint) => CustomScrollView(
-            physics: BouncingScrollPhysics(),
-            slivers: <Widget>[
-              SliverAppBar(
-                floating: true,
-                title: Obx(
-                  () => Text(
-                    _controller.anime.value.title == null
-                        ? 'Loading...'
-                        : _controller.anime.value.title!,
-                    style: TextStyle(color: Colors.black),
+          builder: (context, constraint) =>
+              NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (OverscrollIndicatorNotification overscroll) {
+              overscroll.disallowGlow();
+              return true;
+            },
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverAppBar(
+                  floating: true,
+                  title: Obx(
+                    () => Text(
+                      _controller.anime.value.title == null
+                          ? 'Loading...'
+                          : _controller.anime.value.title!,
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
-              ),
-              Obx(
-                () => _controller.anime.value.title == null
-                    ? SliverList(
-                        delegate: SliverChildListDelegate([
-                          Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                color: Color(0xff00838f),
+                Obx(
+                  () => _controller.anime.value.title == null
+                      ? SliverList(
+                          delegate: SliverChildListDelegate([
+                            Padding(
+                              padding: const EdgeInsets.all(24.0),
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: Color(0xff00838f),
+                                ),
                               ),
-                            ),
-                          )
-                        ]),
-                      )
-                    : constraint.maxWidth <= 1070
-                        ? _listCard()
-                        : _gridCard(),
-              ),
-            ],
+                            )
+                          ]),
+                        )
+                      : constraint.maxWidth <= 1070
+                          ? _listCard()
+                          : _gridCard(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
