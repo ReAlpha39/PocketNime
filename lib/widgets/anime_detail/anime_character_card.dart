@@ -1,5 +1,6 @@
 import 'package:anipocket/widgets/anime_detail/anime_main_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AnimeCharacterCard extends StatelessWidget {
   final String? charName;
@@ -25,25 +26,27 @@ class AnimeCharacterCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Container(
-        height: 100,
+        height: Get.width < 360
+            ? 60
+            : Get.width < 450
+                ? 80
+                : 100,
         width: 500,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 100),
-                  child: BoxImage(
-                    pathPicture: imageUrlChar,
-                  ),
+                BoxImage(
+                  pathPicture: imageUrlChar,
                 ),
                 Container(
+                  width: Get.width < 450 ? 100 : null,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     charName!,
                     maxLines: 2,
-                    overflow: TextOverflow.clip,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -51,6 +54,7 @@ class AnimeCharacterCard extends StatelessWidget {
             Row(
               children: [
                 Container(
+                  width: Get.width < 450 ? 100 : null,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     seiyuuName!,
@@ -59,12 +63,9 @@ class AnimeCharacterCard extends StatelessWidget {
                     overflow: TextOverflow.clip,
                   ),
                 ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 100),
-                  child: BoxImage(
-                    imageOnLeft: false,
-                    pathPicture: imageUrlSeiyuu,
-                  ),
+                BoxImage(
+                  imageOnLeft: false,
+                  pathPicture: imageUrlSeiyuu,
                 ),
               ],
             ),

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: routeName.reverse[RouteName.HOMEPAGE],
       initialBinding: HomeBinding(),
       theme: ThemeData(
-        primarySwatch: customMaterialColor(Color(0xff006064)),
+        primarySwatch: customMaterialColor(Color(0xff00838f)),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:anipocket/controllers/anime_detail_controller.dart';
 import 'package:anipocket/utils/custom_material_color.dart';
-import 'package:anipocket/widgets/anime_detail/anime_character_card.dart';
 import 'package:anipocket/widgets/anime_detail/anime_characters.dart';
 import 'package:anipocket/widgets/anime_detail/anime_main_card.dart';
 import 'package:anipocket/widgets/anime_detail/anime_overview.dart';
@@ -17,14 +16,15 @@ class AnimeDetailPage extends StatelessWidget {
     return Theme(
       data: ThemeData(
         appBarTheme: AppBarTheme(
-          backgroundColor: customMaterialColor(primaryColor).shade50,
+          backgroundColor: customMaterialColor(Color(0xffe0f7fa)).shade50,
         ),
         primaryIconTheme: IconThemeData(color: Colors.black),
       ),
       child: Scaffold(
-        backgroundColor: customMaterialColor(primaryColor).shade50,
+        backgroundColor: customMaterialColor(Color(0xffe0f7fa)).shade50,
         body: LayoutBuilder(
           builder: (context, constraint) => CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 floating: true,
@@ -32,14 +32,29 @@ class AnimeDetailPage extends StatelessWidget {
                   () => Text(
                     _controller.anime.value.title == null
                         ? 'Loading...'
-                        : _controller.anime.value.title! +
-                            " " +
-                            constraint.maxWidth.toString(),
+                        : _controller.anime.value.title!,
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
-              constraint.maxWidth <= 1070 ? _listCard() : _gridCard(),
+              Obx(
+                () => _controller.anime.value.title == null
+                    ? SliverList(
+                        delegate: SliverChildListDelegate([
+                          Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: Color(0xff00838f),
+                              ),
+                            ),
+                          )
+                        ]),
+                      )
+                    : constraint.maxWidth <= 1070
+                        ? _listCard()
+                        : _gridCard(),
+              ),
             ],
           ),
         ),
@@ -58,17 +73,12 @@ class AnimeDetailPage extends StatelessWidget {
             Obx(
               () => _controller.anime.value.title == null
                   ? Container()
-                  : Padding(
-                      padding: const EdgeInsets.only(
-                        top: 28,
-                      ),
-                      child: Column(
-                        children: [
-                          AnimeMainCard(),
-                          AnimeRating(),
-                          AnimeOverview(),
-                        ],
-                      ),
+                  : Column(
+                      children: [
+                        AnimeMainCard(),
+                        AnimeRating(),
+                        AnimeOverview(),
+                      ],
                     ),
             ),
             Column(

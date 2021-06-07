@@ -78,7 +78,7 @@ class AnimeRating extends StatelessWidget {
                               width: 1,
                             ),
                             Expanded(
-                              flex: 3,
+                              flex: Get.width < 380 ? 6 : 3,
                               child: Row(
                                 children: [
                                   Container(

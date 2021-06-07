@@ -10,22 +10,16 @@ class AnimeMainCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: 300,
-          maxHeight: 220,
-          maxWidth: 500,
-        ),
+      child: Container(
+        height: Get.width < 400 ? 200 : 220,
+        width: 500,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Obx(
-              () => ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 220),
-                child: BoxImage(
-                  pathPicture: _controller.anime.value.imageUrl,
-                ),
+              () => BoxImage(
+                pathPicture: _controller.anime.value.imageUrl,
               ),
             ),
             Expanded(
@@ -40,7 +34,8 @@ class AnimeMainCard extends StatelessWidget {
                           width: double.infinity,
                           child: Text(
                             _controller.anime.value.title!,
-                            overflow: TextOverflow.clip,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -56,7 +51,7 @@ class AnimeMainCard extends StatelessWidget {
                             children: [
                               Text(
                                 "Japanese",
-                                overflow: TextOverflow.clip,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w400,
@@ -64,7 +59,8 @@ class AnimeMainCard extends StatelessWidget {
                               ),
                               Text(
                                 _controller.anime.value.titleJapanese!,
-                                overflow: TextOverflow.clip,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
@@ -82,7 +78,7 @@ class AnimeMainCard extends StatelessWidget {
                             children: [
                               Text(
                                 "English",
-                                overflow: TextOverflow.clip,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w400,
@@ -90,7 +86,8 @@ class AnimeMainCard extends StatelessWidget {
                               ),
                               Text(
                                 _controller.anime.value.titleEnglish!,
-                                overflow: TextOverflow.clip,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
@@ -137,9 +134,7 @@ class BoxImage extends StatelessWidget {
                 },
                 fit: BoxFit.cover,
               )
-            : Container(
-                height: 100,
-              ),
+            : Container(),
       ),
     );
   }

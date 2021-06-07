@@ -28,18 +28,20 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
       child: Container(
         child: Column(
           children: [
-            Container(
-              width: textSize?.width == null ? 50 : textSize!.width + 20,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey.shade50,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
+            Center(
+              child: Container(
+                width: textSize?.width == null ? 50 : textSize!.width + 20,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey.shade50,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
                 ),
-              ),
-              height: 30,
-              child: Center(
-                child: Text(widget.titleCard!),
+                height: 30,
+                child: Center(
+                  child: Text(widget.titleCard!),
+                ),
               ),
             ),
             WidgetSize(
