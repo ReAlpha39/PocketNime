@@ -67,9 +67,10 @@ class _AnimeOverviewCardState extends State<AnimeOverviewCard> {
                   ),
                 ),
                 child: Center(
-                  child: Text(widget.value == null
-                      ? widget.nullMessage
-                      : widget.value!),
+                  child: Text(
+                    widget.value == null ? widget.nullMessage : widget.value!,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
