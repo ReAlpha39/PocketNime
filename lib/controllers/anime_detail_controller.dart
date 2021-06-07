@@ -1,5 +1,6 @@
 import 'package:anipocket/models/anime/anime_description.dart';
 import 'package:anipocket/models/anime/genre.dart';
+import 'package:anipocket/models/character_staff/character_staff.dart';
 import 'package:anipocket/repositories/jikan_api.dart';
 import 'package:anipocket/utils/custom_material_color.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class AnimeDetailController extends GetxController {
   final dateFormat = DateFormat('MMM dd, yyyy');
   final numberFormat = NumberFormat('###,###');
   Rx<AnimeDescription> anime = AnimeDescription().obs;
+  Rx<CharacterStaff> charStaff = CharacterStaff().obs;
 
   @override
   void onReady() {
@@ -22,16 +24,24 @@ class AnimeDetailController extends GetxController {
     try {
       var argument = Get.arguments.toString();
       var temp = await _jikanApi.getAnimeDescription(argument);
-      if (temp.malId != null) {
+      var tempB = await _jikanApi.getAnimeCharacterStaff(argument);
+      if (temp.malId != null && tempB.requestHash != null) {
         anime.value = temp;
         anime.refresh();
-        print(anime.value.title);
+        charStaff.value = tempB;
+        charStaff.refresh();
       } else {
-        _showDialog(title: 'Error', middleText: 'Cannot fetch data');
+        _showDialog(
+          title: 'Error',
+          middleText: 'Cannot fetch data, error: data null',
+        );
       }
     } catch (e) {
       print(e);
-      _showDialog(title: 'Error', middleText: 'Cannot fetch data');
+      _showDialog(
+        title: 'Error',
+        middleText: 'Cannot fetch data, error: ' + e.toString(),
+      );
     }
   }
 

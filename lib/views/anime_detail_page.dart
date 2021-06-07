@@ -1,5 +1,7 @@
 import 'package:anipocket/controllers/anime_detail_controller.dart';
 import 'package:anipocket/utils/custom_material_color.dart';
+import 'package:anipocket/widgets/anime_detail/anime_character_card.dart';
+import 'package:anipocket/widgets/anime_detail/anime_characters.dart';
 import 'package:anipocket/widgets/anime_detail/anime_main_card.dart';
 import 'package:anipocket/widgets/anime_detail/anime_overview.dart';
 import 'package:anipocket/widgets/anime_detail/anime_rating.dart';
@@ -63,6 +65,7 @@ class AnimeDetailPage extends StatelessWidget {
                       child: Column(
                         children: [
                           AnimeMainCard(),
+                          AnimeRating(),
                           AnimeOverview(),
                         ],
                       ),
@@ -70,8 +73,12 @@ class AnimeDetailPage extends StatelessWidget {
             ),
             Column(
               children: [
-                AnimeRating(),
                 AnimeSynopsis(),
+                Obx(
+                  () => _controller.charStaff.value.characters == null
+                      ? Container()
+                      : AnimeCharacters(),
+                ),
               ],
             ),
           ],
@@ -107,6 +114,14 @@ class AnimeDetailPage extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: AnimeSynopsis(),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Obx(
+            () => _controller.charStaff.value.characters == null
+                ? Container()
+                : AnimeCharacters(),
+          ),
         ),
       ]),
     );

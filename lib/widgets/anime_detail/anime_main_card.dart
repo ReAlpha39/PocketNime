@@ -111,16 +111,23 @@ class AnimeMainCard extends StatelessWidget {
 
 class BoxImage extends StatelessWidget {
   final String? pathPicture;
+  final bool imageOnLeft;
 
-  const BoxImage({Key? key, this.pathPicture}) : super(key: key);
+  const BoxImage({
+    Key? key,
+    this.pathPicture,
+    this.imageOnLeft = true,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 3 / 4,
       child: ClipRRect(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8),
-          bottomLeft: Radius.circular(8),
+          topLeft: imageOnLeft ? Radius.circular(8) : Radius.zero,
+          bottomLeft: imageOnLeft ? Radius.circular(8) : Radius.zero,
+          topRight: imageOnLeft ? Radius.zero : Radius.circular(8),
+          bottomRight: imageOnLeft ? Radius.zero : Radius.circular(8),
         ),
         child: pathPicture != "" && pathPicture != null
             ? Image.network(
@@ -130,7 +137,9 @@ class BoxImage extends StatelessWidget {
                 },
                 fit: BoxFit.cover,
               )
-            : Container(),
+            : Container(
+                height: 100,
+              ),
       ),
     );
   }
